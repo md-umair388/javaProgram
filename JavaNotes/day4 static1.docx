@@ -1,0 +1,274 @@
+7:57 PM 6/23/2017static keyword
+
+The static keyword in java is used for memory management mainly. We can apply java static keyword with variables, methods, blocks .The static keyword belongs to the class than instance of the class.
+
+The static can be:
+
+variable (also known as class variable)
+method (also known as class method)
+block
+
+1) Java static variable
+
+If you declare any variable as static, it is known static variable.
+
+The static variable can be used to refer the common property of all objects (that is not unique for each object) e.g. company name of employees,college name of students etc.
+The static variable gets memory only once in class area at the time of class loading.
+
+class Counter2{  
+static int count=0;  //will get memory only once and retain its value  
+  
+Counter2(){  
+count++;  
+System.out.println(count);  
+}  
+  
+public static void main(String args[]){  
+  
+Counter2 c1=new Counter2();  
+Counter2 c2=new Counter2();  
+Counter2 c3=new Counter2();  
+  
+ }  
+}  
+
+===============================================
+2) Java static method
+
+If you apply static keyword with any method, it is known as static method.
+
+A static method belongs to the class rather than object of a class.
+A static method can be invoked without the need for creating an instance of a class.
+static method can access static data member and can change the value of it.
+
+class Student
+{  
+     int rollno;  
+     String name;  
+     static String college = "MMMUT";  
+       
+     static void change()
+{  
+     college = "NIELIT";  
+     }  
+  
+     Student9(int r, String n)
+{  
+     rollno = r;  
+     name = n;  
+     }  
+  
+     void display ()
+{
+System.out.println(rollno+" "+name+" "+college);
+}  
+  
+    public static void main(String args[]){  
+    Student9.change();  
+  
+    Student s1 = new Student (256,"Alok");  
+    Student s2 = new Student (369,"Prashant");  
+    Student s3 = new Student (739,"Shashi");  
+  
+    s1.display();  
+    s2.display();  
+    s3.display();  
+    }  
+}  
+=================================================================================================
+Restrictions for static method
+
+There are two main restrictions for the static method. They are:
+The static method can not use non static data member or call non-static method directly.
+this and super cannot be used in static context.
+
+class A{  
+ int a=40;//non static  
+   
+ public static void main(String args[]){  
+  System.out.println(a);  
+ }  
+}       
+
+
+
+=====================================================================
+3) Java static block
+
+Is used to initialize the static data member.
+It is executed before main method at the time of classloading.
+
+class A2{  
+  static{
+System.out.println("static block is invoked");
+}  
+  public static void main(String args[]){  
+   System.out.println("Hello main");  
+  }  
+}  
+=====================================================================
+this keyword in java
+In java, this is a reference variable that refers to the current object.
+
+1) this: to refer current class instance variable
+
+The this keyword can be used to refer current class instance variable. If there is ambiguity between the instance variables and parameters, this keyword resolves the problem of ambiguity.
+
+
+class Student{  
+int rollno;  
+String name;  
+float fee;  
+Student(int rollno,String name,float fee){  
+this.rollno=rollno;  
+this.name=name;  
+this.fee=fee;  
+}  
+void display(){System.out.println(rollno+" "+name+" "+fee);}  
+}  
+  
+class TestThis2{  
+public static void main(String args[]){  
+Student s1=new Student(111,"Alok",2000f);  
+Student s2=new Student(112,"Prashant",3000f);  
+s1.display();  
+s2.display();  
+}}  
+================================================================================================
+note:If local variables(formal arguments) and instance variables are different, there is no need to use "this" keyword
+================================================================================================
+2) this: to invoke current class method
+You may invoke the method of the current class by using the this keyword. If you don't use the this keyword, compiler automatically adds this keyword while invoking the method.
+
+
+class A{  
+void m()
+{
+System.out.println("hello m");
+}  
+void n()
+{  
+System.out.println("hello n");  
+                 //m();//same as this.m()  
+this.m();  
+}  
+}  
+class TestThis4{  
+public static void main(String args[]){  
+A a=new A();  
+a.n();  
+}}  
+=================================================================================================
+Inheritance in Java
+Inheritance in java is a mechanism in which one object acquires all the properties and behaviors of parent object. When you inherit from an existing class, you can reuse methods and fields of parent class, and you can add new methods and fields also.
+Inheritance represents the IS-A relationship, also known as parent-child relationship.
+
+In the terminology of Java, a class which is inherited is called parent or super class and the new class is called child or subclass.
+
+Types of inheritance in java
+On the basis of class, there can be three types of inheritance in java: single, multilevel and hierarchical.
+
+
+
+
+
+
+Single Inheritance Example:
+class Developer{  
+void develop(){
+System.out.println("developing...");
+}  
+}  
+class Tester extends Developer{  
+void test(){
+System.out.println("testing...");
+}  
+}  
+class TestInheritance{  
+public static void main(String args[]){  
+Developer d=new Developer();  
+d.develop();  
+d.test();  
+}}  
+
+================================================================================================
+Multilevel Inheritance Example:
+class Developer{  
+void develop(){System.out.println("developing...");
+}  
+}  
+class Engineer extends Manager{  
+void eng(){System.out.println("engineering...");}  
+}  
+class Associate extends Engineer{  
+void help(){System.out.println("helping...");}  
+}  
+class TestInheritance2{  
+public static void main(String args[]){  
+Associate a=new Associate();  
+a.manage();  
+a.eng();  
+a.help();  
+}}  
+================================================================================================
+Hierarchical Inheritance Example
+
+class Developer{  
+void develop(){
+System.out.println("developing..");
+}  
+}  
+class Tester extends Developer
+{  
+void test(){System.out.println("testing...");
+}  
+}  
+class Designer extends Animal{  
+void design(){System.out.println("designing...");
+}  
+}  
+class TestInheritance3{  
+public static void main(String args[]){  
+Designer d=new Designer();  
+d.design();  
+d.develop();  
+//d.test();//C.T.Error  
+}}  
+===============================================================================================
+Method Overloading in Java
+If a class has multiple methods having same name but different in parameters, it is known as Method Overloading.
+Method overloading increases the readability of the program.
+
+There are two ways to overload the method in java
+
+By changing number of arguments
+By changing the data type
+
+1) Method Overloading: changing no. of arguments
+class Adder{  
+static int add(int a,int b)
+{return a+b;}  
+static int add(int a,int b,int c)
+{return a+b+c;}  
+}  
+class TestOverloading1{  
+public static void main(String[] args){  
+System.out.println(Adder.add(11,11));  
+System.out.println(Adder.add(11,11,11));  
+}}  
+====================================================================
+2) Method Overloading: changing data type of arguments
+class Adder{  
+static int add(int a, int b){return a+b;}  
+static double add(double a, double b){return a+b;}  
+}  
+class TestOverloading2{  
+public static void main(String[] args){  
+System.out.println(Adder.add(11,11));  
+System.out.println(Adder.add(12.3,12.6));  
+}}  
+====================================================================
+
+
+
+
